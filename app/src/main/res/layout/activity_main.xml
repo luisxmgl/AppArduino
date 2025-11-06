@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+
+        <TextView
+            android:id="@+id/tvDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/distancia_default"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvLedStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/led_apagado"
+            android:textSize="18sp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Botones de modo alerta -->
+        <Button
+            android:id="@+id/btnActivarAlerta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_alerta_on"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnDesactivarAlerta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_alerta_off"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Botones de alarma manual -->
+        <Button
+            android:id="@+id/btnAlarmaManualOn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Activar alarma manual"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnAlarmaManualOff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Desactivar alarma manual"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Botón de cerrar sesión -->
+        <Button
+            android:id="@+id/btnCerrarSesion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cerrar sesión"
+            android:layout_marginBottom="24dp" />
+
+        <ImageView
+            android:id="@+id/imgInacapLogo"
+            android:layout_width="118dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:contentDescription="Logo Inacap"
+            android:src="@drawable/inacap" />
+
+    </LinearLayout>
+</ScrollView>

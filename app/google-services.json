@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "493423571689",
+    "project_id": "appaqui-a221b",
+    "storage_bucket": "appaqui-a221b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493423571689:android:bec0c07a9e057c5dacb678",
+        "android_client_info": {
+          "package_name": "com.example.appaqui"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-Sbq13VZl-Bx8wae7rpyRUKjchxuwjp8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
