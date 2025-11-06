@@ -26,8 +26,8 @@ Aplicación Android desarrollada en Kotlin que permite el registro e inicio de s
 - `Usuarios.db`: Base de datos SQLite (opcional para revisión)
 
 ## Autores
-Paulina Mabel
-Sebastián Riquelme
+Paulina Mabel, 
+Sebastián Riquelme y 
 Luis Inostroza 
 
 
