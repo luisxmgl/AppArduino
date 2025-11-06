@@ -9,7 +9,7 @@ Aplicación Android desarrollada en Kotlin que permite el registro e inicio de s
 - Visualización de usuarios registrados en Logcat para depuración
 - Comunicación con Arduino mediante comandos simples (`ON`, `OFF`, `BUZZERON`)
 - Diseño modular que facilita la migración entre simulación y hardware real
-- Eliminación de usuarios (desactivada en esta versión para fines de entrega)
+
 
 ## Requisitos técnicos
 - Android Studio Arctic Fox o superior
