@@ -25,8 +25,12 @@ Aplicación Android desarrollada en Kotlin que permite el registro e inicio de s
 - `app/src/main/AndroidManifest.xml`: Declaración de actividades y permisos
 - `Usuarios.db`: Base de datos SQLite (opcional para revisión)
 
-## Autor
-Luis Inostroza  
+## Autores
+Paulina Mabel
+Sebastián Riquelme
+Luis Inostroza 
+
+
 [luis.inostroza1998@gmail.com](mailto:luis.inostroza1998@gmail.com)
 
 Proyecto desarrollado como entrega académica, con enfoque en modularidad, integración con hardware y buenas prácticas de desarrollo Android.
