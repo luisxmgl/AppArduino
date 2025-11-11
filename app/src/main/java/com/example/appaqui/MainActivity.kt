@@ -1,6 +1,7 @@
 package com.example.appaqui
 
 import android.annotation.SuppressLint
+import android.app.PendingIntent
 import android.content.Intent
 import android.hardware.usb.UsbManager
 import android.media.MediaPlayer
@@ -8,10 +9,13 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.Button
+import android.widget.EditText // Aquí está!
 import android.widget.ImageView
-import android.app.PendingIntent
 import android.widget.TextView
+import android.widget.Toast // Aquí está!
+import androidx.appcompat.app.AlertDialog // Aquí está!
 import androidx.appcompat.app.AppCompatActivity
+import android.text.InputType // Aquí está!
 import com.hoho.android.usbserial.driver.UsbSerialDriver
 import com.hoho.android.usbserial.driver.UsbSerialPort
 import com.hoho.android.usbserial.driver.UsbSerialProber
@@ -106,7 +110,59 @@ class MainActivity : AppCompatActivity() {
         val lista = db.obtenerTodosLosUsuarios()
         android.util.Log.d("USUARIOS_REGISTRADOS", lista.joinToString())
 
+        // Aquí está! Referencias a los nuevos controles para edición y eliminación
+        val btnEditarUsuario = findViewById<Button>(R.id.btnEditarUsuario)
+        val btnEliminarUsuario = findViewById<Button>(R.id.btnEliminarUsuario)
+        val etNombreEliminar = findViewById<EditText>(R.id.etNombreEliminar)
 
+        // Aquí está! Lógica para editar la contraseña del usuario actual (pantalla de Monitoreo)
+        btnEditarUsuario.setOnClickListener {
+            tapSound.start()
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Editar contraseña")
+
+            val input = EditText(this)
+            input.hint = "Nueva contraseña"
+            input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            builder.setView(input)
+
+            builder.setPositiveButton("Guardar") { dialog, _ ->
+                val nuevaClave = input.text.toString().trim()
+                val usuarioActual = prefs.getString("usuario", "") ?: ""
+                if (nuevaClave.isEmpty()) {
+                    Toast.makeText(this, "La contraseña no puede estar vacía", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                    return@setPositiveButton
+                }
+                val actualizado = db.actualizarClave(usuarioActual, nuevaClave)
+                if (actualizado) {
+                    Toast.makeText(this, "Contraseña actualizada", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Error al actualizar", Toast.LENGTH_SHORT).show()
+                }
+                dialog.dismiss()
+            }
+
+            builder.setNegativeButton("Cancelar") { dialog, _ -> dialog.cancel() }
+            builder.show()
+        }
+
+        // Aquí está! Lógica para eliminar usuario por nombre (pantalla de Monitoreo)
+        btnEliminarUsuario.setOnClickListener {
+            tapSound.start()
+            val nombre = etNombreEliminar.text.toString().trim()
+            if (nombre.isEmpty()) {
+                Toast.makeText(this, "Ingresa un nombre de usuario", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            val eliminado = db.eliminarUsuario(nombre)
+            if (eliminado) {
+                Toast.makeText(this, "Usuario eliminado", Toast.LENGTH_SHORT).show()
+                etNombreEliminar.setText("")
+            } else {
+                Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         startReadingLoop()
     }
@@ -141,7 +197,7 @@ class MainActivity : AppCompatActivity() {
 
     // 🔄 MODIFICADO AQUÍ: ahora lee distancia desde Arduino vía WiFi
     private fun readFromArduino(): Int? {
-        val ipArduino = "192.168.1.123" // ← reemplaza con la IP real del Monitor Serial
+        val ipArduino = "172.26.121.135" // ← reemplaza con la IP real del Monitor Serial
         val url = "http://$ipArduino/distancia"
 
         return try {

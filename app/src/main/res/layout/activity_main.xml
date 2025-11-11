@@ -65,6 +65,34 @@
             android:layout_height="wrap_content"
             android:text="Cerrar sesión"
             android:layout_marginBottom="24dp" />
+		
+		
+		
+				 <!-- Aquí está! Botón para editar usuario -->
+		<Button
+			android:id="@+id/btnEditarUsuario"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Editar Usuario"
+			android:layout_marginTop="16dp" />
+
+		<!-- Aquí está! Campo para ingresar nombre de usuario a eliminar -->
+		<EditText
+			android:id="@+id/etNombreEliminar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="Nombre de usuario a eliminar"
+			android:layout_marginTop="16dp" />
+
+		<!-- Aquí está! Botón para eliminar usuario -->
+		<Button
+			android:id="@+id/btnEliminarUsuario"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Eliminar Usuario"
+			android:layout_marginTop="8dp" />
+
+
 
         <ImageView
             android:id="@+id/imgInacapLogo"

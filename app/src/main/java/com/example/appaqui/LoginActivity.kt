@@ -30,11 +30,21 @@ class LoginActivity : AppCompatActivity() {
         dbHelper = DBHelper(this)
 
         btnLogin.setOnClickListener {
-            val usuario = etUsuario.text.toString()
-            val clave = etClave.text.toString()
+            val usuario = etUsuario.text.toString().trim()
+            val clave = etClave.text.toString().trim()
+
+            if (usuario.isEmpty() || clave.isEmpty()) {
+                Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             if (dbHelper.validarUsuario(usuario, clave)) {
+                // Aquí está! Guardar usuario en SharedPreferences para que MainActivity lo use
                 getSharedPreferences("sesion", MODE_PRIVATE)
-                    .edit().putString("usuario", usuario).apply()
+                    .edit()
+                    .putString("usuario", usuario)
+                    .apply()
+
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             } else {

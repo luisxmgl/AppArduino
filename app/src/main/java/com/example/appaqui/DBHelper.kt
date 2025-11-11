@@ -33,7 +33,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Usuarios.db", null
         return existe
     }
 
-    // 🆕 AÑADIDO: función para obtener todos los usuarios registrados
+    // Aquí está! Función para obtener todos los usuarios registrados
     fun obtenerTodosLosUsuarios(): List<String> {
         val usuarios = mutableListOf<String>()
         val db = this.readableDatabase
@@ -45,7 +45,17 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Usuarios.db", null
         return usuarios
     }
 
-    // 🆕 AÑADIDO: función para eliminar un usuario por nombre
+    // Aquí está! Función para actualizar la contraseña de un usuario
+    fun actualizarClave(usuario: String, nuevaClave: String): Boolean {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put("clave", nuevaClave)
+        }
+        val filasAfectadas = db.update("usuarios", values, "usuario = ?", arrayOf(usuario))
+        return filasAfectadas > 0
+    }
+
+    // Aquí está! Función para eliminar un usuario por nombre
     fun eliminarUsuario(usuario: String): Boolean {
         val db = this.writableDatabase
         val filasAfectadas = db.delete("usuarios", "usuario = ?", arrayOf(usuario))
